@@ -1,5 +1,5 @@
 # INSTALL UBUNTU
-FROM node:6
+FROM gregor2004ua/apiconnect
 
 #INSTALL LIBAIO1 & UNZIP (NEEDED FOR STRONG-ORACLE)
 RUN apt-get update \
@@ -24,3 +24,11 @@ ENV OCI_LIB_DIR="/opt/oracle/instantclient"
 ENV OCI_INCLUDE_DIR="/opt/oracle/instantclient/sdk/include"
 
 RUN echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_client.conf && ldconfig
+
+RUN npm i -g oracledb
+RUN npm i -g loopback-connector-oracle
+
+EXPOSE 9000 4000 4001 4002
+
+CMD [ "apic", "edit" ]
+
