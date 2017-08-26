@@ -22,13 +22,15 @@ ENV LD_LIBRARY_PATH="/opt/oracle/instantclient"
 ENV OCI_HOME="/opt/oracle/instantclient"
 ENV OCI_LIB_DIR="/opt/oracle/instantclient"
 ENV OCI_INCLUDE_DIR="/opt/oracle/instantclient/sdk/include"
+ENV HOST="0.0.0.0"
+ENV SKIP_LOGIN="TRUE"
 
 RUN echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_client.conf && ldconfig
 
 RUN npm i -g oracledb
 RUN npm i -g loopback-connector-oracle
 
-EXPOSE 9000 4000 4001 4002
+EXPOSE 9000 4000 4001 4002 3000
 
 CMD [ "apic", "edit" ]
 
